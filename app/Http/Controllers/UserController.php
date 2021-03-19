@@ -22,6 +22,33 @@ class UserController extends Controller
         return view('user.service');
     }
 
+    //to about
+    public function about(){
+        return view('user.about');
+    }
+    //to contact
+    public function contact(){
+        return view('user.contact');
+    }
+    //to team
+    public function team(){
+        return view('user.team');
+    }
+    //to blog
+    public function blog()
+    {
+        return view('user.blog');
+    }
+    //to pricing
+    public function pricing()
+    {
+        return view('user.pricing');
+    }
+    //to portfolio
+    public function portfolio()
+    {
+        return view('user.portfolio');
+    }
     /**
      * Show the form for creating a new resource.
      *
