@@ -25,3 +25,10 @@ Route::get('/team','App\Http\controllers\UserController@team')->name('team');
 Route::get('/blog','App\Http\controllers\UserController@blog')->name('blog');
 Route::get('/pricing','App\Http\controllers\UserController@pricing')->name('pricing');
 Route::get('/portfolio','App\Http\controllers\UserController@portfolio')->name('portfolio');
+
+//route admincontrollers
+Route::get('/admin/home','App\Http\controllers\AdminController@index')->name('admin.home');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
