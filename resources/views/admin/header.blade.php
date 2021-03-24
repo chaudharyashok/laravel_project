@@ -335,8 +335,8 @@
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
             <ul class="sub">
-              <li><a class="" href="form_component.html">Form Elements</a></li>
-              <li><a class="" href="form_validation.html">Form Validation</a></li>
+              <li><a class="" href="{{route('admin.addcategory')}}">Add Category</a></li>
+              <li><a class="" href="{{route('admin.addproduct')}}">Add Product</a></li>
             </ul>
           </li>
           <li class="sub-menu">

@@ -20,11 +20,18 @@
           <div class="col-lg-12">
             <section class="panel">
               <header class="panel-heading">
-                Add Catgory
+                Add Category
               </header>
               <div class="panel-body">
+                @if(Session::has('msg'))
+                <div class="alert alert-success">
+                  {{Session::get('msg')}}
+                  @endif
+                  
+                </div>
                 <div class="form">
-                  <form class="form-validate form-horizontal " id="register_form" method="post" action="">
+                  <form class="form-validate form-horizontal " id="register_form" method="POST" action="{{route('admin.storecategory')}}">
+                    @csrf
                     <div class="form-group ">
                       <label for="fullname" class="control-label col-lg-2">Add Category <span class="required">*</span></label>
                       <div class="col-lg-10">
