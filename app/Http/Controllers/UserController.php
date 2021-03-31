@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Product;
 
 class UserController extends Controller
 {
@@ -44,21 +45,31 @@ class UserController extends Controller
     {
         return view('user.pricing');
     }
-    //to portfolio
-    public function portfolio()
+    //to product
+    public function product()
     {
-        return view('user.portfolio');
-    }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+       $showproduct=product::orderBy('id','desc')->get();
+       return view('user.product',['showproduct'=>$showproduct]);
     }
 
+     public function productdetail($id){
+     $detail=Product::find($id);
+
+     $recent=Product::orderBy('id','desc')->limit(5)->get();
+
+     return view('user.productdetail',compact('detail','recent'));
+    }
+
+//for search
+
+    public function search(Request $request){
+        $searchitem=$request->get('search');
+        $result=Product::orderBy('id','desc')->where('product_name','like','%'.$searchitem.'%')->get();
+        return view('user.searchproduct',['result'=>$result]);
+    }
+
+    // /**
+  
     /**
      * Store a newly created resource in storage.
      *

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Product;
 
 class AdminController extends Controller
 {
@@ -68,16 +69,40 @@ class AdminController extends Controller
 
     }
 
+    public function storeproduct(Request $request)
+    {
+        $image=null;
+        if($request->hasFile('image')){
+            $file=$request->file('image');
+            $image=mt_rand(10001,9999999).'_'.$file->
+            getClientOriginalName();
+            $file->move('admin/upload/product/',$image);
+        }
+        product::create([
+
+            'product_name'=>$request->get('pname'),
+            'product_price'=>$request->get('price'),
+            'product_quantity'=>$request->get('quantity'),
+            'product_description'=>$request->get('description'),
+            'product_image'=>$image,
+            'category_id'=>$request->get('category'),
+
+        ]);
+        $request->session()->flash('msg','product has been added successfuly');
+        return redirect()->back();
+    }
+
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function showproduct(){
+        $showproduct=Product::orderBy('id','desc')->get();
+        return view('admin.showproduct',['showproduct'=>$showproduct]);
     }
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -113,3 +138,5 @@ class AdminController extends Controller
         //
     }
 }
+
+

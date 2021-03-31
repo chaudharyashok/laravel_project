@@ -22,9 +22,15 @@
               <header class="panel-heading">
                 Add Product Form
               </header>
+              @if(Session::has('msg'))
+              <div class="alert alert-success">
+                {{Session::get('msg')}}
+              </div>
+              @endif
               <div class="panel-body">
                 <div class="form">
-                  <form class="form-validate form-horizontal " id="register_form" method="POST" action="">
+                  <form class="form-validate form-horizontal " id="register_form" method="POST" action="{{route('admin.storeproduct')}}" enctype="multipart/form-data">
+                    @csrf
 
 
                     <div class="form-group ">
@@ -63,7 +69,7 @@
                       <label for="category" class="control-label col-lg-2">Category <span class="required">*</span></label>
                       <div class="col-lg-10">
                         
-                        <select class="form-control">
+                        <select class="form-control" name="category">
                           
                           @foreach($category as $c)
 
